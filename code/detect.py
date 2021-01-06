@@ -55,19 +55,19 @@ def find_start_stop_space(pix_lst, space_lst, avg):
     # rejecting if pixel is white or not first black pixel in seq
     for i, pixel in enumerate(pix_lst):
         if pixel == 255 or was_black:
-        if pixel == 255:
-            if was_black:
-            cur_space += 1
-            was_black = False
-        continue
+            if pixel == 255:
+                if was_black:
+                    cur_space += 1
+                was_black = False
+            continue
         # finding barcode sequence
         was_black = True
         # finding if it is barcode seq
         res = is_barcode(space_lst[cur_space: cur_space + SPACE_SIZE], avg)
         if res:
-        st_space = cur_space
-        fin_space = cur_space + SPACE_SIZE
-        break
+            st_space = cur_space
+            fin_space = cur_space + SPACE_SIZE
+            break
     return st_space, fin_space
 
 

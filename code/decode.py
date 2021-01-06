@@ -1,5 +1,5 @@
 import cv2
-
+import requests
 
 def letter_identifier(img_gray, thresh):
     # locate each bar and transform pixels (bars) to letters ('A', 'F', 'D', 'T')

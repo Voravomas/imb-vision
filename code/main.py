@@ -1,4 +1,9 @@
 import cv2
+from etc import split_img, convert_colors, conv_thresh, show_img
+from turn import get_angle, rotate_img
+from detect import detect_barcode
+from crop import crop_all
+from decode import letter_identifier, requester
 
 
 def output_res(response):
@@ -23,7 +28,10 @@ def pipeline(IMG_PATH):
     # break image into 3 parts
     img, img_gray, thresh = split_img(IMG_PATH)
     contour, angle = get_angle(img, thresh)
-    img, img_gray, thresh = split_img(IMG_NAME)
+    img, img_gray, thresh = split_img(IMG_PATH)
+
+    #show what image was taken
+    show_img(img)
 
     # rotate image if needed
     img = rotate_img(img, angle)
@@ -51,5 +59,7 @@ def pipeline(IMG_PATH):
 
 
 def main():
-    IMG_PATH = "imb_practice/p2.png"
+    IMG_PATH = "../pictures/imb_practice/p2.png"
     pipeline(IMG_PATH)
+
+main()
